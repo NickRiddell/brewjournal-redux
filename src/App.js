@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import BrewFrom from './components/BrewForm'
+import BrewList from './components/BrewList'
 
 class App extends Component {
   render() {
@@ -11,21 +13,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </div>
         <div className="Brew-App">
-          <form>
-           <input type="text"/>
-           <input type="text"/>
-           <input type="text"/>
-           <input type="number"/>
-          </form>
-          <div className="Brew-List">
-            <ul>
-              {this.props.brews.map(brew => (
-                <li key={brew.id}>
-                  {brew.title}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <BrewFrom />
+          <BrewList brews={this.props.brews} />
         </div>
       </div>
     );
