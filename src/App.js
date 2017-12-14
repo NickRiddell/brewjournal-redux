@@ -13,7 +13,13 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </div>
         <div className="Brew-App">
-          <BrewFrom />
+          <BrewFrom
+            currentTitle={this.props.currentTitle}
+            currentIngredients={this.props.currentIngredients}
+            currentMethod={this.props.currentMethod}
+            currentInitialSG={this.props.currentInitialSG}
+            changeCurrentTitle={this.props.changeCurrentTitle}
+          />
           <BrewList brews={this.props.brews} />
         </div>
       </div>
