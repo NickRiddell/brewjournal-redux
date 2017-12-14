@@ -12,19 +12,18 @@ class App extends Component {
         </div>
         <div className="Brew-App">
           <form>
-            <input type="text"/>
+           <input type="text"/>
+           <input type="text"/>
+           <input type="text"/>
+           <input type="number"/>
           </form>
           <div className="Brew-List">
             <ul>
-              <li>
-                <input type="checkbox" /> Raspberry Mead
-              </li>
-              <li>
-                <input type="checkbox" /> Chcolate Mead
-              </li>
-              <li>
-                <input type="checkbox" /> Mead
-              </li>
+              {this.props.brews.map(brew => (
+                <li key={brew.id}>
+                  {brew.title}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
