@@ -6,6 +6,9 @@ import registerServiceWorker from './registerServiceWorker';
 import store from './store'
 
 const brewTitleChangeHandler = (val) => store.dispatch({type:'CURRENT_TITLE_UPDATE', payload: val})
+const brewIngredientsChangeHandler = (val) => store.dispatch({type:'CURRENT_INGREDIENTS_UPDATE', payload: val})
+const brewMethodChangeHandler = (val) => store.dispatch({type:'CURRENT_METHOD_UPDATE', payload: val})
+const brewInitialSGChangeHandler = (val) => store.dispatch({type:'CURRENT_INITIALSG_UPDATE', payload: val})
 
 const render = () => {
   const state = store.getState()
@@ -15,6 +18,9 @@ const render = () => {
     currentMethod={state.currentMethod}
     currentInitialSG={state.currentInitialSG}
     changeCurrentTitle={brewTitleChangeHandler}
+    changeCurrentIngredients={brewIngredientsChangeHandler}
+    changeCurrentMethod={brewMethodChangeHandler}
+    changeCurrentInitialSG={brewInitialSGChangeHandler}
     />,
     document.getElementById('root'));
 }

@@ -14,7 +14,13 @@ export default (state = initState, action) => {
     case 'BREW_ADD':
       return {...state, brews: state.brews.concat(action.payload)}
     case 'CURRENT_TITLE_UPDATE':
-    return {...state, currentTitle: action.payload}
+      return {...state, currentTitle: action.payload}
+    case 'CURRENT_INGREDIENTS_UPDATE':
+      return {...state, currentIngredients: action.payload}
+    case 'CURRENT_METHOD_UPDATE':
+      return {...state, currentMethod: action.payload}
+    case 'CURRENT_INITIALSG_UPDATE':
+      return {...state, currentInitialSG: action.payload}
     default:
       return state
   }

@@ -19,6 +19,9 @@ class App extends Component {
             currentMethod={this.props.currentMethod}
             currentInitialSG={this.props.currentInitialSG}
             changeCurrentTitle={this.props.changeCurrentTitle}
+            changeCurrentIngredients={this.props.changeCurrentIngredients}
+            changeCurrentMethod={this.props.changeCurrentMethod}
+            changeCurrentInitialSG={this.props.changeCurrentInitialSG}
           />
           <BrewList brews={this.props.brews} />
         </div>
