@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import BrewFrom from './components/BrewForm'
+import BrewForm from './components/BrewForm'
 import BrewList from './components/BrewList'
 
 class App extends Component {
@@ -13,14 +13,14 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </div>
         <div className="Brew-App">
-          <BrewFrom
+          <BrewForm
             currentTitle={this.props.currentTitle}
-            currentIngredients={this.props.currentIngredients}
-            currentMethod={this.props.currentMethod}
-            currentInitialSG={this.props.currentInitialSG}
             changeCurrentTitle={this.props.changeCurrentTitle}
+            currentIngredients={this.props.currentIngredients}
             changeCurrentIngredients={this.props.changeCurrentIngredients}
+            currentMethod={this.props.currentMethod}
             changeCurrentMethod={this.props.changeCurrentMethod}
+            currentInitialSG={this.props.currentInitialSG}
             changeCurrentInitialSG={this.props.changeCurrentInitialSG}
           />
           <BrewList brews={this.props.brews} />
