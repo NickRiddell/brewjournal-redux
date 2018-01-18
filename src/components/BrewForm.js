@@ -1,22 +1,24 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
+import {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG} from '../reducers/brew';
 
-export default (props) => {
-  const {currentTitle, currentIngredients, currentMethod, currentInitialSG, changeCurrentTitle, changeCurrentIngredients, changeCurrentMethod, changeCurrentInitialSG} = props
+const BrewForm = (props) => {
+  const {currentTitle, currentIngredients, currentMethod, currentInitialSG, updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG} = props
   const handleTitleChange = (evt) => {
     const val = evt.target.value
-    changeCurrentTitle(val)
+    updateCurrentTitle(val)
   }
   const handleIngredientsChange = (evt) => {
     const val = evt.target.value
-    changeCurrentIngredients(val)
+    updateCurrentIngredients(val)
   }
   const handleMethodChange = (evt) => {
     const val = evt.target.value
-    changeCurrentMethod(val)
+    updateCurrentMethod(val)
   }
   const handleInitialSGChange = (evt) => {
     const val = evt.target.value
-    changeCurrentInitialSG(val)
+    updateCurrentInitialSG(val)
   }
   return (
     <form>
@@ -35,3 +37,8 @@ export default (props) => {
     </form>
   )
 }
+
+export default connect(
+  (state) => ({currentTitle: state.currentTitle, currentIngredients: state.currentIngredients, currentMethod: state.currentMethod, currentInitialSG: state.currentInitialSG}),
+  {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG}
+)(BrewForm)

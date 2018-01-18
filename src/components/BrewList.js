@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {connect} from 'react-redux';
 
 const BrewItem = ({id, title, stage }) => (
   <li>
@@ -7,10 +8,14 @@ const BrewItem = ({id, title, stage }) => (
   </li>
 )
 
-export default (props) => (
+const BrewList = (props) => (
   <div className="Brew-List">
     <ul>
       {props.brews.map(brew => <BrewItem key={brew.id} {...brew} />)}
     </ul>
   </div>
 )
+
+export default connect(
+  (state) => ({brews: state.brews})
+)(BrewList)
