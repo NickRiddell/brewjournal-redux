@@ -4,7 +4,6 @@ import logo from './logo.svg';
 import './App.css';
 import BrewForm from './components/BrewForm';
 import BrewList from './components/BrewList';
-import {bindActionCreators} from 'redux';
 import {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG} from './reducers/brew';
 
 class App extends Component {
@@ -33,7 +32,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => state
-const mapDispatchToProps = (dispatch) => bindActionCreators({updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG}, dispatch)
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
-export default ConnectedApp
+export default connect(
+  (state) => state,
+  {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG}
+)(App)
