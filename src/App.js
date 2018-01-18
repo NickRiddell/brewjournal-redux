@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
-import BrewForm from './components/BrewForm'
-import BrewList from './components/BrewList'
+import BrewForm from './components/BrewForm';
+import BrewList from './components/BrewList';
+import {bindActionCreators} from 'redux';
+import {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG} from './reducers/brew';
 
 class App extends Component {
   render() {
@@ -16,13 +18,13 @@ class App extends Component {
         <div className="Brew-App">
           <BrewForm
             currentTitle={this.props.currentTitle}
-            changeCurrentTitle={this.props.changeCurrentTitle}
+            changeCurrentTitle={this.props.updateCurrentTitle}
             currentIngredients={this.props.currentIngredients}
-            changeCurrentIngredients={this.props.changeCurrentIngredients}
+            changeCurrentIngredients={this.props.updateCurrentIngredients}
             currentMethod={this.props.currentMethod}
-            changeCurrentMethod={this.props.changeCurrentMethod}
+            changeCurrentMethod={this.props.updateCurrentMethod}
             currentInitialSG={this.props.currentInitialSG}
-            changeCurrentInitialSG={this.props.changeCurrentInitialSG}
+            changeCurrentInitialSG={this.props.updateCurrentInitialSG}
           />
           <BrewList brews={this.props.brews} />
         </div>
@@ -31,7 +33,7 @@ class App extends Component {
   }
 }
 
-// export default App;
 const mapStateToProps = (state) => state
-const ConnectedApp = connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => bindActionCreators({updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG}, dispatch)
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
 export default ConnectedApp
