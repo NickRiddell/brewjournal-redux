@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchBrews} from '../reducers/brew'
 
-const BrewItem = ({id, title, stage }) => (
+const BrewItem = ({id, title, ingredients, method, initialSG, stage }) => (
   <li>
     <div className="Brew-Title">{title}</div>
+    <div className="Brew-Title">{ingredients}</div>
+    <div className="Brew-Title">{method}</div>
+    <div className="Brew-Title">{initialSG}</div>
     <div className="Brew-Stage">{stage}</div>
   </li>
 )

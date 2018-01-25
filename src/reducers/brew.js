@@ -1,10 +1,10 @@
-import {getBrews} from '../lib/brewServices'
+import {getBrews, createBrew} from '../lib/brewServices'
 const initState = {
   brews: [],
-  currentTitle: 'tempTitle',
-  currentIngredients: 'tempIngredients',
-  currentMethod: 'tempMethod',
-  currentInitialSG: 1
+  currentTitle: '',
+  currentIngredients: '',
+  currentMethod: '',
+  currentInitialSG: ''
 }
 
 const BREW_ADD = 'BREW_ADD'
@@ -19,6 +19,7 @@ export const updateCurrentIngredients = (val) => ({type:CURRENT_INGREDIENTS_UPDA
 export const updateCurrentMethod = (val) => ({type:CURRENT_METHOD_UPDATE, payload: val})
 export const updateCurrentInitialSG = (val) => ({type:CURRENT_INITIALSG_UPDATE, payload: val})
 export const loadBrews = (brews) => ({type: BREWS_LOAD, payload: brews})
+export const addBrew = (brew) => ({type: BREW_ADD, payload: brew})
 export const fetchBrews = () => {
   return (dispatch) => {
     getBrews()
@@ -26,10 +27,17 @@ export const fetchBrews = () => {
   }
 }
 
+export const saveBrew = (title, ingredients, method, initialSG) => {
+  return (dispatch) => {
+    createBrew(title, ingredients, method, initialSG)
+    .then(res => dispatch(addBrew(res)))
+  }
+}
+
 export default (state = initState, action) => {
   switch (action.type) {
     case BREW_ADD:
-      return {...state, brews: state.brews.concat(action.payload)}
+      return {...state, currentTitle: '', currentIngredients: '', currentMethod: '', currentInitialSG: '', brews: state.brews.concat(action.payload)}
     case BREWS_LOAD:
       return {...state, brews: action.payload}
     case CURRENT_TITLE_UPDATE:

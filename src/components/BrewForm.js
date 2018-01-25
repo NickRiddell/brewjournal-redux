@@ -1,44 +1,53 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG} from '../reducers/brew';
+import {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG, saveBrew} from '../reducers/brew';
 
-const BrewForm = (props) => {
-  const {currentTitle, currentIngredients, currentMethod, currentInitialSG, updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG} = props
-  const handleTitleChange = (evt) => {
+class BrewForm extends Component {
+  handleTitleChange = (evt) => {
     const val = evt.target.value
-    updateCurrentTitle(val)
+    this.props.updateCurrentTitle(val)
   }
-  const handleIngredientsChange = (evt) => {
+  handleIngredientsChange = (evt) => {
     const val = evt.target.value
-    updateCurrentIngredients(val)
+    this.props.updateCurrentIngredients(val)
   }
-  const handleMethodChange = (evt) => {
+  handleMethodChange = (evt) => {
     const val = evt.target.value
-    updateCurrentMethod(val)
+    this.props.updateCurrentMethod(val)
   }
-  const handleInitialSGChange = (evt) => {
+  handleInitialSGChange = (evt) => {
     const val = evt.target.value
-    updateCurrentInitialSG(val)
+    this.props.updateCurrentInitialSG(val)
   }
-  return (
-    <form>
-     <input type="text"
-       onChange={handleTitleChange}
-       value={currentTitle}/>
-     <input type="text"
-       onChange={handleIngredientsChange}
-       value={currentIngredients}/>
-     <input type="text"
-       onChange={handleMethodChange}
-       value={currentMethod}/>
-     <input type="number"
-       onChange={handleInitialSGChange}
-       value={currentInitialSG}/>
-    </form>
-  )
+
+  handleSubmit = (evt) => {
+    evt.preventDefault()
+    this.props.saveBrew(this.props.currentTitle, this.props.currentIngredients, this.props.currentMethod, this.props.currentInitialSG)
+  }
+
+  render() {
+    const {currentTitle, currentIngredients, currentMethod, currentInitialSG} = this.props
+    return (
+      <form onSubmit={this.handleSubmit}>
+       <input type="text"
+         onChange={this.handleTitleChange}
+         value={currentTitle}/>
+       <input type="text"
+         onChange={this.handleIngredientsChange}
+         value={currentIngredients}/>
+       <input type="text"
+         onChange={this.handleMethodChange}
+         value={currentMethod}/>
+       <input type="number"
+         onChange={this.handleInitialSGChange}
+         value={currentInitialSG}/>
+      <input type="submit" value="Submit" />
+      </form>
+    )
+  }
 }
 
 export default connect(
   (state) => ({currentTitle: state.currentTitle, currentIngredients: state.currentIngredients, currentMethod: state.currentMethod, currentInitialSG: state.currentInitialSG}),
-  {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG}
+  {updateCurrentTitle, updateCurrentIngredients, updateCurrentMethod, updateCurrentInitialSG, saveBrew}
 )(BrewForm)
